@@ -1,0 +1,65 @@
+/* style.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+.header {
+  background-color: #01234A;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 20px;
+}
+
+/* Título centralizado */
+.title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Menu hambúrguer no lado esquerdo */
+.menu-hamburguer {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Os 3 tracinhos */
+.linha {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Efeito opcional ao passar o mouse */
+.menu-hamburguer:hover .linha {
+  background-color: #cccccc;
+}
+
+/* Conteúdo */
+.content {
+  padding: 30px 20px;
+  color: #333333;
+}
