@@ -4,25 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cedraz Auto Peças</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/webp" href="../open/assets/logo.webp">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <header class="header">
-    <!-- Menu com 3 tracinhos no lado esquerdo -->
-    <div class="menu-hamburguer" aria-label="Menu de navegação" role="button" tabindex="0">
-      <span class="linha"></span>
-      <span class="linha"></span>
-      <span class="linha"></span>
-    </div>
+  <header class="site-header" id="inicio">
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-haspopup="dialog" aria-controls="navigation-dialog">
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+    </button>
 
-    <!-- Título centralizado -->
-    <h1 class="title">Cedraz Auto Peças</h1>
+    <h1 class="site-title">Cedraz Auto Peças</h1>
   </header>
 
-  <main class="content">
-    <p>Bem-vindo à Cedraz Auto Peças.</p>
+  <dialog class="navigation-dialog" id="navigation-dialog" aria-labelledby="navigation-title">
+    <div class="dialog-header">
+      <h2 id="navigation-title">Cedraz Auto Peças</h2>
+      <button class="dialog-close" type="button" aria-label="Fechar menu">&times;</button>
+    </div>
+    <nav class="navigation-menu" aria-label="Navegação principal">
+      <a href="#inicio">Início</a>
+      <a href="#redes-sociais">Redes Sociais</a>
+      <a href="#localizacao">Localização</a>
+    </nav>
+  </dialog>
+
+  <main class="main-content">
+    <section class="home-section" aria-labelledby="home-title">
+      <h2 id="home-title">Início</h2>
+    </section>
+    <section id="redes-sociais" aria-labelledby="social-links-title">
+      <h2 id="social-links-title">Redes Sociais</h2>
+    </section>
+    <section id="localizacao" aria-labelledby="location-title">
+      <h2 id="location-title">Localização</h2>
+    </section>
   </main>
 
+  <script src="main.js" defer></script>
 </body>
 </html>

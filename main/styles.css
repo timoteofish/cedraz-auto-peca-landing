@@ -1,37 +1,76 @@
-/* style.css */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-color: #01234a #e7eef5;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e7eef5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #01234a;
+  border: 3px solid #e7eef5;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #01234a;
+}
+
 body {
   background-color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
+  min-width: 320px;
 }
 
-/* Header */
-.header {
-  background-color: #01234A;
-  height: 80px;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-color: #000000;
+  pointer-events: none;
+  animation: reveal-page 1s ease-out forwards;
+}
+
+@keyframes reveal-page {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.site-header {
+  background-color: #01234a;
+  min-height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 0 20px;
+  padding: 12px 64px;
 }
 
-/* Título centralizado */
-.title {
+.site-title {
   color: #ffffff;
-  font-size: 28px;
+  font-size: clamp(18px, 2.2vw, 28px);
   font-weight: bold;
   text-align: center;
+  line-height: 1.2;
 }
 
-/* Menu hambúrguer no lado esquerdo */
-.menu-hamburguer {
+.menu-toggle {
   position: absolute;
   left: 20px;
   top: 50%;
@@ -41,10 +80,11 @@ body {
   gap: 5px;
   cursor: pointer;
   padding: 5px;
+  border: 0;
+  background: transparent;
 }
 
-/* Os 3 tracinhos */
-.linha {
+.menu-line {
   display: block;
   width: 28px;
   height: 3px;
@@ -53,13 +93,275 @@ body {
   transition: 0.3s;
 }
 
-/* Efeito opcional ao passar o mouse */
-.menu-hamburguer:hover .linha {
+.menu-toggle:hover .menu-line {
   background-color: #cccccc;
 }
 
-/* Conteúdo */
-.content {
-  padding: 30px 20px;
+.menu-toggle:focus-visible,
+.navigation-menu a:focus-visible,
+.dialog-close:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.navigation-dialog {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: min(88vw, 360px);
+  max-width: calc(100vw - 24px);
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+  color: #ffffff;
+  overflow-y: auto;
+  background:
+    radial-gradient(ellipse at top left, rgba(37, 125, 202, 0.34), transparent 48%),
+    linear-gradient(160deg, #082f57 0%, #01234a 58%, #001a36 100%);
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0 18px 18px 0;
+  box-shadow: 16px 0 48px rgba(0, 13, 29, 0.36);
+}
+
+.navigation-dialog:not([open]) {
+  display: none;
+}
+
+.navigation-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: slide-in 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0.7;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.navigation-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.navigation-dialog[open]::backdrop {
+  animation: backdrop-fade-in 280ms ease-out;
+}
+
+@keyframes backdrop-fade-in {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 8px 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.dialog-header h2 {
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.dialog-close {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.dialog-close:hover {
+  background-color: rgba(255, 255, 255, 0.17);
+  transform: rotate(90deg);
+}
+
+.navigation-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navigation-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 14px 16px;
+  color: #ffffff;
+  text-align: left;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.navigation-menu a::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-left: 12px;
+  border-top: 2px solid rgba(255, 255, 255, 0.72);
+  border-right: 2px solid rgba(255, 255, 255, 0.72);
+  transform: rotate(45deg);
+}
+
+.navigation-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateX(4px);
+}
+
+.main-content {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  padding: clamp(16px, 3vw, 30px) clamp(16px, 3vw, 40px);
   color: #333333;
+}
+
+.home-section {
+  display: flex;
+  min-height: clamp(360px, 72vh, 760px);
+  min-height: clamp(360px, 72svh, 760px);
+  align-items: center;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 80px) 0;
+}
+
+.home-section h2 {
+  color: #01234a;
+  font-size: clamp(5rem, 20vw, 16rem);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+  text-align: center;
+}
+
+main section {
+  padding: 30px 0;
+  scroll-margin-top: 20px;
+}
+
+main section:not(.home-section) h2 {
+  font-size: 24px;
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    min-height: 68px;
+    padding-inline: 54px;
+  }
+
+  .site-title {
+    font-size: clamp(16px, 4.6vw, 22px);
+  }
+
+  .menu-toggle {
+    left: 14px;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navigation-dialog {
+    width: min(88vw, 360px);
+    max-width: calc(100vw - 16px);
+    padding-inline: clamp(16px, 5vw, 24px);
+  }
+
+  .main-content {
+    padding-inline: 16px;
+  }
+
+  .home-section {
+    min-height: clamp(320px, 68vh, 620px);
+    min-height: clamp(320px, 68svh, 620px);
+  }
+
+  .home-section h2 {
+    font-size: clamp(4.5rem, 22vw, 8rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header {
+    padding-inline: 48px;
+  }
+
+  .site-title {
+    font-size: 16px;
+  }
+
+  .home-section h2 {
+    font-size: 4.25rem;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .navigation-dialog {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .dialog-header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .navigation-menu {
+    gap: 6px;
+  }
+
+  .navigation-menu a {
+    min-height: 46px;
+    padding-block: 10px;
+  }
+
+  .home-section {
+    min-height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .navigation-dialog[open],
+  .navigation-dialog[open]::backdrop {
+    animation: none;
+  }
+
+  .navigation-menu a {
+    transition: none;
+  }
+
 }
