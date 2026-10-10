@@ -1,48 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cedraz Auto Peças</title>
-  <link rel="icon" type="image/webp" href="../open/assets/logo.webp">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cedraz Auto Peças</title>
+    <link rel="icon" type="image/webp" href="../open/assets/logo.webp" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="inicio">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-haspopup="dialog"
+        aria-controls="navigation-dialog"
+      >
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+      </button>
 
-  <header class="site-header" id="inicio">
-    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-haspopup="dialog" aria-controls="navigation-dialog">
-      <span class="menu-line"></span>
-      <span class="menu-line"></span>
-      <span class="menu-line"></span>
-    </button>
+      <h1 class="site-title">Cedraz Auto Peças</h1>
+    </header>
 
-    <h1 class="site-title">Cedraz Auto Peças</h1>
-  </header>
+    <dialog class="navigation-dialog" id="navigation-dialog" aria-labelledby="navigation-title">
+      <div class="dialog-header">
+        <h2 id="navigation-title">Cedraz Auto Peças</h2>
+        <button class="dialog-close" type="button" aria-label="Fechar menu">&times;</button>
+      </div>
+      <nav class="navigation-menu" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#redes-sociais">Redes Sociais</a>
+      </nav>
+    </dialog>
 
-  <dialog class="navigation-dialog" id="navigation-dialog" aria-labelledby="navigation-title">
-    <div class="dialog-header">
-      <h2 id="navigation-title">Cedraz Auto Peças</h2>
-      <button class="dialog-close" type="button" aria-label="Fechar menu">&times;</button>
-    </div>
-    <nav class="navigation-menu" aria-label="Navegação principal">
-      <a href="#inicio">Início</a>
-      <a href="#redes-sociais">Redes Sociais</a>
-      <a href="#localizacao">Localização</a>
-    </nav>
-  </dialog>
+    <main class="main-content">
+      <section class="home-section" aria-labelledby="home-title">
+        <div class="home-copy">
+          <p class="eyebrow">Soluções automotivas</p>
+          <h2 id="home-title">A peça certa para seguir em frente!</h2>
+          <p class="home-description">
+            Conte com a Cedraz Auto Peças para encontrar soluções para o seu veículo!
+          </p>
+          <div class="home-actions">
+            <a
+              class="button button-primary"
+              href="https://wa.me/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Fale conosco
+            </a>
+            <a class="button button-secondary" href="#localizacao">Conheça nossa localização</a>
+          </div>
+        </div>
+        <div class="home-image" role="img" aria-label="Fachada da Cedraz Auto Peças"></div>
+      </section>
 
-  <main class="main-content">
-    <section class="home-section" aria-labelledby="home-title">
-      <h2 id="home-title">Início</h2>
-    </section>
-    <section id="redes-sociais" aria-labelledby="social-links-title">
-      <h2 id="social-links-title">Redes Sociais</h2>
-    </section>
-    <section id="localizacao" aria-labelledby="location-title">
-      <h2 id="location-title">Localização</h2>
-    </section>
-  </main>
+      <section
+        class="content-section location-section"
+        id="localizacao"
+        aria-labelledby="location-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Estamos por aqui</p>
+          <h2 id="location-title">Localização</h2>
+          <p>Venha conhecer a Cedraz Auto Peças, em breve, mais informações para chegar até nós!</p>
+        </div>
+        <div class="location-card">
+          <iframe
+            class="location-map"
+            src="https://www.google.com/maps?q=&output=embed"
+            title="Mapa da localização da Cedraz Auto Peças"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <a
+            class="location-map-link"
+            href="https://www.google.com/maps/search/?api=1&query="
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir no Google Maps <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
 
-  <script src="main.js" defer></script>
-</body>
+      <section
+        class="content-section social-section"
+        id="redes-sociais"
+        aria-labelledby="social-links-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Fique conectado</p>
+          <h2 id="social-links-title">Redes sociais</h2>
+          <p>
+            Estamos preparando nossos canais, em breve, você poderá acompanhar as novidades por
+            aqui!
+          </p>
+        </div>
+        <div class="social-cards">
+          <div class="social-card">
+            <span class="social-mark" aria-hidden="true">ig</span>
+            <span class="social-name">Instagram</span>
+            <span class="social-status">Link em breve</span>
+          </div>
+          <div class="social-card">
+            <span class="social-mark" aria-hidden="true">f</span>
+            <span class="social-name">Facebook</span>
+            <span class="social-status">Link em breve</span>
+          </div>
+          <div class="social-card">
+            <span class="social-mark" aria-hidden="true">wa</span>
+            <span class="social-name">WhatsApp</span>
+            <span class="social-status">Link em breve</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Todos os direitos reservados</p>
+    </footer>
+
+    <script src="main.js" defer></script>
+  </body>
 </html>
