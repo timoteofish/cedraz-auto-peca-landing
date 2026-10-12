@@ -243,23 +243,44 @@ body::before {
 .main-content {
   width: min(100%, 1440px);
   margin-inline: auto;
-  padding: clamp(16px, 3vw, 30px) clamp(16px, 3vw, 40px);
+  padding: 0 clamp(16px, 3vw, 40px);
   color: #333333;
 }
 
 .home-section {
+  position: relative;
+  isolation: isolate;
   display: flex;
-  min-height: clamp(440px, 62vw, 680px);
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  min-height: calc(100vh - 80px);
+  min-height: calc(100svh - 80px);
   align-items: center;
   justify-content: space-between;
-  gap: clamp(32px, 6vw, 88px);
-  padding: clamp(48px, 8vw, 100px) 0;
+  overflow: hidden;
+  padding: clamp(48px, 8vw, 100px) clamp(24px, 5vw, 64px);
+  color: #01234a;
+  background-color: #ffffff;
 }
 
 .home-copy {
-  flex: 1 1 48%;
-  max-width: 620px;
-  padding-block: 24px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: min(760px, calc(100% - 40px));
+  padding: clamp(24px, 5vw, 52px);
+  text-align: center;
+  background-color: rgba(1, 35, 74, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 20px 56px rgba(0, 12, 28, 0.28);
+  backdrop-filter: blur(8px);
+  transform: translate(-50%, -50%);
+}
+
+.home-copy .eyebrow {
+  color: #67b6f0;
 }
 
 .eyebrow {
@@ -272,7 +293,7 @@ body::before {
 }
 
 .home-section h2 {
-  color: #01234a;
+  color: #ffffff;
   font-size: clamp(2.8rem, 5.4vw, 5.2rem);
   font-weight: 800;
   letter-spacing: -0.055em;
@@ -281,14 +302,15 @@ body::before {
 
 .home-description {
   max-width: 470px;
-  margin-top: 22px;
-  color: #506174;
+  margin: 22px auto 0;
+  color: rgba(255, 255, 255, 0.82);
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.7;
 }
 
 .home-actions {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 30px;
@@ -339,13 +361,57 @@ body::before {
 }
 
 .home-image {
-  flex: 1 1 52%;
-  min-height: clamp(300px, 38vw, 500px);
-  background:
-    linear-gradient(180deg, rgba(1, 35, 74, 0.02), rgba(1, 35, 74, 0.18)),
-    url("assets/banner.webp") center 44% / cover;
-  border-radius: 14px;
-  box-shadow: 0 24px 60px rgba(1, 35, 74, 0.16);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.home-image-strip {
+  position: relative;
+  min-width: 0;
+  flex: 1 1 0;
+  overflow: hidden;
+}
+
+.home-image-strip::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(1, 35, 74, 0.3), rgba(1, 35, 74, 0.3));
+  content: "";
+}
+
+.home-image-strip:not(:last-child)::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 0 auto;
+  width: clamp(4px, 0.7vw, 10px);
+  background-color: rgba(1, 35, 74, 0.55);
+  content: "";
+}
+
+.home-image-strip img {
+  display: block;
+  width: 500%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-image-strip:nth-child(2) img {
+  transform: translateX(-20%);
+}
+
+.home-image-strip:nth-child(3) img {
+  transform: translateX(-40%);
+}
+
+.home-image-strip:nth-child(4) img {
+  transform: translateX(-60%);
+}
+
+.home-image-strip:nth-child(5) img {
+  transform: translateX(-80%);
 }
 
 .content-section {
@@ -417,47 +483,81 @@ body::before {
 
 .social-cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 760px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 16px;
 }
 
 .social-card {
-  display: grid;
-  min-height: 150px;
-  grid-template-columns: auto 1fr;
-  align-content: center;
+  display: flex;
+  min-height: 96px;
   align-items: center;
-  column-gap: 14px;
-  padding: 22px;
-  background: linear-gradient(145deg, #ffffff, #f4f8fb);
+  gap: 16px;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  background: #ffffff;
   border: 1px solid #e0e8ef;
-  border-radius: 10px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(1, 35, 74, 0.06);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.social-card:hover {
+  transform: translateY(-3px);
+  border-color: #c2d4e3;
+  box-shadow: 0 14px 30px rgba(1, 35, 74, 0.12);
+}
+
+.social-card:focus-visible {
+  outline: 3px solid #67b6f0;
+  outline-offset: 3px;
 }
 
 .social-mark {
   display: grid;
-  width: 44px;
-  height: 44px;
-  grid-row: span 2;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
   place-items: center;
   color: #ffffff;
-  background-color: #0875bd;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 700;
+  border-radius: 16px;
+}
+
+.social-mark-instagram {
+  background: linear-gradient(135deg, #7b35c9 0%, #d62976 52%, #f7a928 100%);
+}
+
+.social-mark-whatsapp {
+  background-color: #25d366;
+}
+
+.social-mark svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.social-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.social-mark .social-icon-dot {
+  fill: currentColor;
+  stroke: none;
 }
 
 .social-name {
   color: #01234a;
   font-size: 17px;
   font-weight: 700;
-}
-
-.social-status {
-  align-self: start;
-  margin-top: 4px;
-  color: #728194;
-  font-size: 13px;
 }
 
 .site-footer {
@@ -505,11 +605,9 @@ main section {
   }
 
   .home-section {
-    min-height: 0;
-    flex-direction: column-reverse;
-    align-items: stretch;
-    gap: 20px;
-    padding-block: 28px 52px;
+    min-height: calc(100vh - 68px);
+    min-height: calc(100svh - 68px);
+    padding: 24px;
   }
 
   .home-section h2 {
@@ -517,12 +615,8 @@ main section {
   }
 
   .home-copy {
-    padding-block: 8px;
-  }
-
-  .home-image {
-    width: 100%;
-    min-height: clamp(230px, 65vw, 360px);
+    width: calc(100% - 24px);
+    padding: 24px 18px;
   }
 
   .home-actions {
